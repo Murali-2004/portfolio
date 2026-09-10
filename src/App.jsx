@@ -34,7 +34,7 @@ export default function App() {
       <Background />
       <ScrollToTop />
       <Navbar />
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Page><Home /></Page>} />
           <Route path="/about" element={<Page><About /></Page>} />

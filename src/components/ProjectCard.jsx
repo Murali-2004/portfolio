@@ -3,7 +3,7 @@ import { FiGithub, FiArrowUpRight } from 'react-icons/fi'
 
 export default function ProjectCard({ project, index = 0 }) {
   return (
-    <article className="group flex h-full flex-col rounded-[3px] border-[5px] border-gold bg-[rgb(var(--card-bg))] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_-16px_rgb(var(--c-gold)/0.45)]">
+    <article className="group flex h-full flex-col rounded-none border-[8px] border-gold bg-[rgb(var(--card-bg))] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_18px_44px_-16px_rgb(var(--c-gold)/0.5)]">
       {/* meta bar */}
       <div className="flex items-center justify-between border-b-2 border-gold/40 px-5 py-3 font-mono text-[0.68rem] uppercase tracking-widest text-muted">
         <span className="text-accent">{String(index + 1).padStart(2, '0')}</span>
