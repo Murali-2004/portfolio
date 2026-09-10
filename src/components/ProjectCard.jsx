@@ -22,7 +22,7 @@ export default function ProjectCard({ project, index = 0 }) {
         />
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col bg-[rgb(var(--c-gold)/0.1)] p-5">
         <h3 className="font-display text-xl font-medium text-content">{project.title}</h3>
         <p className="mt-2 text-sm leading-relaxed text-body">{project.tagline}</p>
 
