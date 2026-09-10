@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   THEME TOKENS — warm editorial. Light is default, .dark opt-in.
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --c-base: 249 250 251; /* cool near-white */
+  --c-base-2: 240 242 245; /* panel / inset */
+  --c-content: 13 15 19; /* near-black, cool */
+  --c-body: 55 61 69; /* body copy */
+  --c-muted: 108 116 126; /* secondary / meta */
+  --c-line: 13 15 19; /* hairlines (used at low alpha) */
+  --c-accent: 37 69 216; /* engineering blue */
+  --c-gold: 168 130 63; /* matte gold */
+
+  --card-bg: 255 255 255;
+  --card-border-a: 0.12;
+  --shadow-sm: 0 1px 2px rgb(13 15 19 / 0.04);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --c-base: 11 13 16;
+  --c-base-2: 18 21 26;
+  --c-content: 233 236 239;
+  --c-body: 176 183 191;
+  --c-muted: 128 137 147;
+  --c-line: 233 236 239;
+  --c-accent: 108 142 255;
+  --c-gold: 201 163 96;
+
+  --card-bg: 17 20 25;
+  --card-border-a: 0.1;
+  --shadow-sm: none;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(var(--c-base));
+  color: rgb(var(--c-body));
+  font-family: 'Inter', system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'cv05';
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  color: rgb(var(--c-content));
+  font-weight: 500;
+}
+
+::selection {
+  background: rgb(var(--c-accent) / 0.22);
+  color: rgb(var(--c-content));
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--c-base));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-line) / 0.35);
+  border: 3px solid rgb(var(--c-base));
+  border-radius: 999px;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  /* Was a rainbow gradient — now a quiet accent emphasis */
+  .gradient-text {
+    color: rgb(var(--c-accent));
+  }
+
+  .glass {
+    background: rgb(var(--card-bg));
+    border: 1px solid rgb(var(--c-line) / var(--card-border-a));
+    backdrop-filter: none;
+  }
+
+  .card {
+    background: rgb(var(--card-bg));
+    border: 1px solid rgb(var(--c-line) / var(--card-border-a));
+    box-shadow: var(--shadow-sm);
+    border-radius: 4px;
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-3px);
+    border-color: rgb(var(--c-line) / 0.4);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-[6px] px-5 py-3 text-[0.8rem] font-medium transition-all duration-200;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary {
+    @apply btn;
+    background: rgb(var(--c-content));
+    color: rgb(var(--c-base));
+  }
+  .btn-primary:hover {
+    background: rgb(var(--c-accent));
+    color: #fff;
+  }
+
+  .btn-ghost {
+    @apply btn;
+    border: 1px solid rgb(var(--c-line) / 0.3);
+    color: rgb(var(--c-content));
+  }
+  .btn-ghost:hover {
+    border-color: rgb(var(--c-content));
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-[3px] border px-2.5 py-1 text-[0.7rem] font-medium uppercase tracking-wide text-body;
+    font-family: 'JetBrains Mono', monospace;
+    border-color: rgb(var(--c-line) / 0.22);
+    background: transparent;
+  }
+
+  .section-pad {
+    @apply py-16 sm:py-24;
+  }
+
+  .eyebrow {
+    @apply text-[0.72rem] font-medium uppercase tracking-[0.22em] text-accent;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .rule {
+    @apply block h-px w-full bg-line/20;
+  }
+
+  .social-ic {
+    @apply grid h-10 w-10 place-items-center rounded-[4px] border text-body transition-colors duration-200;
+    border-color: rgb(var(--c-line) / 0.22);
+  }
+  .social-ic:hover {
+    color: rgb(var(--c-content));
+    border-color: rgb(var(--c-content));
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* grad-border is now just a hairline frame */
+.grad-border {
+  position: relative;
+  border-radius: 6px;
+}
+.grad-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgb(var(--c-line) / 0.2);
+  pointer-events: none;
+}

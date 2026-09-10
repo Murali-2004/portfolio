@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .ink { fill: #100f21; stroke: #100f21; }
+    @media (prefers-color-scheme: dark) {
+      .ink { fill: #ececf5; stroke: #ececf5; }
+    }
+  </style>
+  <g transform="rotate(-12 32 32)">
+    <path class="ink" d="M32 8 L61 22 L32 36 L3 22 Z" stroke="none"/>
+    <path class="ink" d="M15 29 v11 c0 5.5 7.6 9.5 17 9.5 s17 -4 17 -9.5 v-11 l-17 8.2 Z" stroke="none"/>
+    <path class="ink" d="M56 24.5 v13.5" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <circle class="ink" cx="56" cy="41.5" r="3.4" stroke="none"/>
+  </g>
+</svg>
