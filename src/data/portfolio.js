@@ -1,3 +1,10 @@
+// Resolve a /public asset against the app base (works at "/" in dev and
+// "/portfolio/" on GitHub Pages). `import.meta.env.BASE_URL` is undefined under
+// Vitest/node, so fall back to "/".
+const BASE =
+  (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.BASE_URL) || "/";
+export const asset = (p) => BASE.replace(/\/$/, "") + "/" + String(p).replace(/^\//, "");
+
 export const profile = {
   name: "Murali M",
   firstName: "Murali",
@@ -13,7 +20,7 @@ export const profile = {
   githubHandle: "Murali-2004",
   linkedin: "https://linkedin.com/in/murali-m-b250a03a9",
   linkedinHandle: "murali-m",
-  resumeFile: "/Murali_M_MERN_Stack_Developer_Resume.pdf",
+  resumeFile: asset("/Murali_M_MERN_Stack_Developer_Resume.pdf"),
   resumeDownloadName: "Murali-M-MERN-Stack-Developer-Resume.pdf",
   // Web3Forms access key — safe to expose (client-side by design). Manage at https://web3forms.com
   web3formsKey: "a9ef6420-34bd-4592-97c7-50550e7e696c",
@@ -26,12 +33,14 @@ export const profile = {
 
 // Drop the matching JPGs into /public/images — see public/images/README.md
 export const photos = {
-  formal: "/images/portrait-formal.jpg", // studio headshot, navy blazer
-  casual: "/images/portrait-casual.jpg", // grey shirt, monument backdrop
-  walking: "/images/photo-walking.jpg", // walking with camera
-  river: "/images/photo-river.jpg", // leaning on the riverside railing
-  standing: "/images/photo-standing.jpg", // standing by the railing with flag
+  formal: asset("/images/portrait-formal.jpg"), // studio headshot, navy blazer
+  casual: asset("/images/portrait-casual.jpg"), // grey shirt, monument backdrop
+  walking: asset("/images/photo-walking.jpg"), // walking with camera
+  river: asset("/images/photo-river.jpg"), // leaning on the riverside railing
+  standing: asset("/images/photo-standing.jpg"), // standing by the railing with flag
 };
+
+export const projectImage = (slug) => asset(`/images/projects/${slug}.png`);
 
 export const stats = [
   { value: "4+", label: "Full-stack apps built" },

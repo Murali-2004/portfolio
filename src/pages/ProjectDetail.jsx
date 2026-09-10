@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { FiArrowLeft, FiArrowRight, FiGithub, FiCheck } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
-import { projects, profile } from '../data/portfolio'
+import { projects, profile, projectImage } from '../data/portfolio'
 
 export default function ProjectDetail() {
   const { slug } = useParams()
@@ -44,7 +44,7 @@ export default function ProjectDetail() {
             </div>
             <div className="grad-border overflow-hidden">
               <img
-                src={`/images/projects/${project.slug}.png`}
+                src={projectImage(project.slug)}
                 alt={`${project.title} interface`}
                 className="aspect-video w-full object-cover"
               />

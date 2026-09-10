@@ -33,6 +33,7 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # production build in /dist
 npm run preview  # preview the build
+npm test         # Vitest smoke tests (data + routing)
 ```
 
 ## Add your photos
@@ -58,8 +59,21 @@ All text, projects, skills and links live in one file:
 
 ## Deploy
 
-Any static host works (Vercel, Netlify, GitHub Pages). For SPA routing, add a
-rewrite of all routes to `/index.html`:
+The build is base-path aware via `import.meta.env.BASE_URL`, so it works both at
+a domain root and under a sub-path.
 
-- **Vercel** — automatic
-- **Netlify** — add `public/_redirects` with `/*  /index.html  200`
+### GitHub Pages (configured)
+
+`.github/workflows/deploy.yml` builds with `DEPLOY_TARGET=pages` (sub-path
+`/portfolio/`), runs the tests, and publishes on every push to `main`.
+Live at **https://murali-2004.github.io/portfolio/**.
+
+### Vercel
+
+`vercel.json` is included. Import the repo at vercel.com (or `npx vercel`) — it
+auto-detects Vite, builds at the domain root, and the rewrite handles SPA routing.
+
+### Firebase Hosting
+
+`firebase.json` is included. Run `firebase login`, `firebase use --add <project>`,
+then `npm run build && firebase deploy --only hosting`.

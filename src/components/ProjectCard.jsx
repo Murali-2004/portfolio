@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FiGithub, FiArrowUpRight } from 'react-icons/fi'
+import { projectImage } from '../data/portfolio'
 
 export default function ProjectCard({ project, index = 0 }) {
   return (
@@ -15,7 +16,7 @@ export default function ProjectCard({ project, index = 0 }) {
       {/* visual */}
       <div className="aspect-video overflow-hidden border-b-2 border-gold/40 bg-base-2">
         <img
-          src={`/images/projects/${project.slug}.png`}
+          src={projectImage(project.slug)}
           alt={`${project.title} interface`}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
