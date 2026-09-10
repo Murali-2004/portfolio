@@ -57,6 +57,12 @@ Until a file is added, that slot shows a gradient "M" placeholder — nothing br
 All text, projects, skills and links live in one file:
 [`src/data/portfolio.js`](src/data/portfolio.js).
 
+## Full documentation
+
+[`DOCS.md`](DOCS.md) covers the architecture, the role of every dependency, the
+design system, the test suite, the CI/CD pipeline and an honest assessment of the
+code level.
+
 ## Deploy
 
 The build is base-path aware via `import.meta.env.BASE_URL`, so it works both at
