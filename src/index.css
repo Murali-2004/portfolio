@@ -15,7 +15,7 @@
   --c-muted: 108 116 126; /* secondary / meta */
   --c-line: 13 15 19; /* hairlines (used at low alpha) */
   --c-accent: 37 69 216; /* engineering blue */
-  --c-gold: 201 162 39; /* gold */
+  --c-gold: 216 167 44; /* metallic gold */
 
   --card-bg: 255 255 255;
   --card-border-a: 0.12;
@@ -32,7 +32,7 @@
   --c-muted: 128 137 147;
   --c-line: 233 236 239;
   --c-accent: 108 142 255;
-  --c-gold: 231 195 90;
+  --c-gold: 237 198 84;
 
   --card-bg: 17 20 25;
   --card-border-a: 0.1;
@@ -167,6 +167,65 @@ h1, h2, h3, h4 {
 
 .text-balance {
   text-wrap: balance;
+}
+
+/* ---- Project card: metallic-gold frame + foil-shine hover ---- */
+.proj-card {
+  position: relative;
+  isolation: isolate;
+  border: 9px solid rgb(var(--c-gold));
+  background: rgb(var(--card-bg));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.proj-card::before {
+  /* diagonal light glint that sweeps across on hover */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.5) 49%,
+    rgba(255, 245, 210, 0.65) 50%,
+    transparent 58%
+  );
+  transform: translateX(-130%);
+  transition: transform 0s;
+}
+.proj-card:hover::before {
+  transform: translateX(130%);
+  transition: transform 0.9s ease;
+}
+.proj-card::after {
+  /* soft gold vignette that fades in on hover */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 0 rgb(var(--c-gold) / 0);
+  transition: box-shadow 0.35s ease;
+}
+.proj-card:hover {
+  transform: translateY(-6px);
+  border-color: rgb(var(--c-gold));
+  box-shadow: 0 22px 50px -18px rgb(var(--c-gold) / 0.55),
+    0 0 0 1px rgb(var(--c-gold) / 0.4);
+}
+.proj-card:hover::after {
+  box-shadow: inset 0 0 34px -6px rgb(var(--c-gold) / 0.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  .proj-card,
+  .proj-card::before {
+    transition: none;
+  }
+  .proj-card:hover::before {
+    transform: translateX(-130%);
+  }
 }
 
 /* grad-border is now just a hairline frame */
